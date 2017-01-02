@@ -16,9 +16,16 @@ public class MyApplication extends Application {
         super.onCreate();
         //init
         Fresco.initialize(this);
+
         Realm.init(this);
         // The Realm file will be located in Context.getFilesDir() with name "default.realm"
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
+        //RealmConfiguration config = new RealmConfiguration.Builder().build();
+
+
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
+
         Realm.setDefaultConfiguration(config);
     }
 }

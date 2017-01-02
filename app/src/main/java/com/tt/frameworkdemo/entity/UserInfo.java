@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
 public class UserInfo extends RealmObject {
     @PrimaryKey
     private Integer id;
-    private String name;
+    private String nickname;
 
     public Integer getId() {
         return id;
@@ -19,19 +19,19 @@ public class UserInfo extends RealmObject {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     @Override
     public String toString() {
         return "UserInfo{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", nickname='" + nickname + '\'' +
                 '}';
     }
 }

@@ -6,10 +6,13 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.tt.frameworkdemo.api.ApiUtils;
 import com.tt.frameworkdemo.entity.UserInfo;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import butterknife.BindView;
@@ -41,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = Uri.parse("res://"+getPackageName()+"/"+R.drawable.defaulticon);
         img.setImageURI(uri);
 
-
-        realm.where(UserInfo.class).equalTo("id",1).findAll()
+        /*realm.where(UserInfo.class).equalTo("id",1).findAll()
                 .asObservable()
                 .doOnNext(uuu ->
                 {
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .subscribe(uuu -> {for(UserInfo u:uuu){
                     System.out.println(u);
-        }});
+        }});*/
 
         /*realm.where(UserInfo.class).equalTo("id",1).findAllAsync()
                 .addChangeListener(new RealmChangeListener<RealmResults<UserInfo>>() {
@@ -90,10 +92,11 @@ public class MainActivity extends AppCompatActivity {
     }
     @OnClick(R.id.query)
     public void q(){
-        RealmResults<UserInfo> results = realm.where(UserInfo.class).findAll();
-
-        for(UserInfo u:results){
-            System.out.println(u);
-        }
+        ApiUtils.getInstance().getApiData(
+                ApiUtils.getInstance().getApiServiceImpl().getTest(),
+                userInfos -> {for(UserInfo u:userInfos){
+                    System.out.println(u.getId()+"-----"+u.getNickname());
+                }},
+                throwable -> Toast.makeText(this,throwable.getMessage(),Toast.LENGTH_SHORT).show());
     }
 }
