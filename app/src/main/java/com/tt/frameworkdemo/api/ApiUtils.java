@@ -52,13 +52,13 @@ public class ApiUtils {
      * @param <T>   data type
      */
     public<T> void getApiData(Observable<ApiResult<T>> o,Subscriber<T> s){
-        addThreadSchedulers(o.map(new HttpResultFunc<>())).subscribe(s);
+        addThreadSchedulers(o.map(new HttpResultFunc<T>())).subscribe(s);
     }
     public<T> void getApiData(Observable<ApiResult<T>> o,Action1<T> onNext){
-        addThreadSchedulers(o.map(new HttpResultFunc<>())).subscribe(onNext);
+        addThreadSchedulers(o.map(new HttpResultFunc<T>())).subscribe(onNext);
     }
     public<T> void getApiData(Observable<ApiResult<T>> o,Action1<T> onNext,Action1<Throwable> onError){
-        addThreadSchedulers(o.map(new HttpResultFunc<>())).subscribe(onNext,onError);
+        addThreadSchedulers(o.map(new HttpResultFunc<T>())).subscribe(onNext,onError);
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.tt.frameworkdemo.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -9,6 +11,7 @@ import io.realm.annotations.PrimaryKey;
 public class UserInfo extends RealmObject {
     @PrimaryKey
     private Integer id;
+    @SerializedName(value = "name",alternate = {"nickname"})
     private String nickname;
 
     public Integer getId() {
